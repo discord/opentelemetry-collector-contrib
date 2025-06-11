@@ -53,6 +53,8 @@ func (*Consumer) toDataType(dt metrics.DataType) (out datadogV2.MetricIntakeType
 		out = datadogV2.METRICINTAKETYPE_COUNT
 	case metrics.Gauge:
 		out = datadogV2.METRICINTAKETYPE_GAUGE
+	case metrics.Rate:
+		out = datadogV2.METRICINTAKETYPE_RATE
 	}
 
 	return out
@@ -110,7 +112,7 @@ func (c *Consumer) All(timestamp uint64, buildInfo component.BuildInfo, tags []s
 
 // ConsumeTimeSeries implements the metrics.Consumer interface.
 func (c *Consumer) ConsumeTimeSeries(
-	_ context.Context,
+	ctx context.Context,
 	dims *metrics.Dimensions,
 	typ metrics.DataType,
 	timestamp uint64,
@@ -118,6 +120,12 @@ func (c *Consumer) ConsumeTimeSeries(
 	value float64,
 ) {
 	dt := c.toDataType(typ)
+	// We should use an empty type instead of a well-known string here,
+	// but this works for now and simplifies the dependency graph.
+	rateInterval := ctx.Value(metrics.RateIntervalKey)
+	if rateInterval != nil && rateInterval.(int64) > 0 && (dt == datadogV2.METRICINTAKETYPE_COUNT || dt == datadogV2.METRICINTAKETYPE_RATE) {
+		value = value / float64(rateInterval.(int64))
+	}
 	met := NewMetric(dims.Name(), dt, timestamp, interval, value, dims.Tags())
 	met.SetResources([]datadogV2.MetricResource{
 		{
@@ -127,6 +135,9 @@ func (c *Consumer) ConsumeTimeSeries(
 	})
 	if unit := dims.Unit(); unit != "" {
 		met.SetUnit(unit)
+	}
+	if rateInterval != nil {
+		met.SetInterval(rateInterval.(int64))
 	}
 	c.ms = append(c.ms, met)
 }
