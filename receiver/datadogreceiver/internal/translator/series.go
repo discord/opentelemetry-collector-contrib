@@ -11,6 +11,7 @@ import (
 	"time"
 
 	"github.com/DataDog/agent-payload/v5/gogen"
+	"github.com/DataDog/datadog-agent/pkg/opentelemetry-mapping-go/otlp/metrics"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
 	"go.opentelemetry.io/collector/pdata/pcommon"
 	"go.opentelemetry.io/collector/pdata/pmetric"
@@ -98,14 +99,15 @@ func (mt *MetricsTranslator) TranslateSeriesV1(series SeriesList) pmetric.Metric
 
 			dp = dps.AppendEmpty()
 			dp.SetTimestamp(pcommon.Timestamp(ts * time.Second.Nanoseconds())) // OTel uses nanoseconds, while Datadog uses seconds
+			dimensions.dpAttrs.CopyTo(dp.Attributes())
 
-			if *serie.Type == TypeRate {
-				if serie.Interval.IsSet() {
+			if serie.Interval.IsSet() {
+				dp.Attributes().PutInt(metrics.RateIntervalKey, serie.GetInterval())
+				if *serie.Type == TypeRate {
 					value *= float64(serie.GetInterval())
 				}
 			}
 			dp.SetDoubleValue(value)
-			dimensions.dpAttrs.CopyTo(dp.Attributes())
 
 			stream := identity.OfStream(metricID, dp)
 			if ts, ok := mt.streamHasTimestamp(stream); ok {
@@ -158,8 +160,12 @@ func (mt *MetricsTranslator) TranslateSeriesV2(series []*gogen.MetricPayload_Met
 			dp.SetTimestamp(pcommon.Timestamp(point.Timestamp * time.Second.Nanoseconds())) // OTel uses nanoseconds, while Datadog uses seconds
 			dimensions.dpAttrs.CopyTo(dp.Attributes())                                      // TODO(jesus.vazquez) Review this copy
 			val := point.Value
-			if serie.Type == gogen.MetricPayload_RATE && serie.Interval != 0 {
-				val *= float64(serie.Interval)
+
+			if serie.Interval != 0 {
+				dp.Attributes().PutInt(metrics.RateIntervalKey, serie.Interval)
+				if serie.Type == gogen.MetricPayload_RATE {
+					val *= float64(serie.Interval)
+				}
 			}
 			dp.SetDoubleValue(val)
 
