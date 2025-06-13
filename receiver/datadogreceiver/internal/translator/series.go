@@ -101,10 +101,10 @@ func (mt *MetricsTranslator) TranslateSeriesV1(series SeriesList) pmetric.Metric
 			dp.SetTimestamp(pcommon.Timestamp(ts * time.Second.Nanoseconds())) // OTel uses nanoseconds, while Datadog uses seconds
 			dimensions.dpAttrs.CopyTo(dp.Attributes())
 
-			if *serie.Type == TypeRate {
-				if serie.Interval.IsSet() {
+			if serie.Interval.IsSet() {
+				dp.Attributes().PutInt(metrics.RateIntervalKey, serie.GetInterval())
+				if *serie.Type == TypeRate {
 					value *= float64(serie.GetInterval())
-					dp.Attributes().PutInt(metrics.RateIntervalKey, serie.GetInterval())
 				}
 			}
 			dp.SetDoubleValue(value)
@@ -161,9 +161,11 @@ func (mt *MetricsTranslator) TranslateSeriesV2(series []*gogen.MetricPayload_Met
 			dimensions.dpAttrs.CopyTo(dp.Attributes())                                      // TODO(jesus.vazquez) Review this copy
 			val := point.Value
 
-			if serie.Type == gogen.MetricPayload_RATE && serie.Interval != 0 {
-				val *= float64(serie.Interval)
+			if serie.Interval != 0 {
 				dp.Attributes().PutInt(metrics.RateIntervalKey, serie.Interval)
+				if serie.Type == gogen.MetricPayload_RATE {
+					val *= float64(serie.Interval)
+				}
 			}
 			dp.SetDoubleValue(val)
 

@@ -174,4 +174,4 @@ replace github.com/open-telemetry/opentelemetry-collector-contrib/internal/commo
 replace github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/ecsutil => ../../internal/aws/ecsutil
 
 // HACK for rate propagation
-replace github.com/DataDog/opentelemetry-mapping-go/pkg/otlp/metrics v0.28.0 => github.com/discord/opentelemetry-mapping-go/pkg/otlp/metrics v0.0.0-20250612172623-5d9401ee47da
+replace github.com/DataDog/opentelemetry-mapping-go/pkg/otlp/metrics v0.28.0 => github.com/discord/opentelemetry-mapping-go/pkg/otlp/metrics v0.0.0-20250613164705-187de783633a

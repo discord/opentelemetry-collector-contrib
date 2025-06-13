@@ -114,7 +114,7 @@ func (c *Consumer) ConsumeTimeSeries(
 	// We should use an empty type instead of a well-known string here,
 	// but this works for now and simplifies the dependency graph.
 	rateInterval := ctx.Value(metrics.RateIntervalKey)
-	if rateInterval != nil && rateInterval.(int64) > 0 {
+	if rateInterval != nil && rateInterval.(int64) > 0 && (dt == datadogV2.METRICINTAKETYPE_COUNT || dt == datadogV2.METRICINTAKETYPE_RATE) {
 		value = value / float64(rateInterval.(int64))
 	}
 	met := NewMetric(dims.Name(), dt, timestamp, value, dims.Tags())
