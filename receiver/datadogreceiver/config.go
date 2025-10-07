@@ -28,6 +28,7 @@ const (
 
 	configIntakeBehaviorDisable = "disable"
 	configIntakeBehaviorProxy   = "proxy"
+	configIntakeBehaviorSwallow = "swallow"
 )
 
 type Config struct {
@@ -65,7 +66,7 @@ type ProxyConfig struct {
 
 func (c *Config) Validate() error {
 	behavior := c.Intake.Behavior
-	isValidBehavior := behavior == "" || behavior == configIntakeBehaviorDisable || behavior == configIntakeBehaviorProxy
+	isValidBehavior := behavior == "" || behavior == configIntakeBehaviorDisable || behavior == configIntakeBehaviorProxy || behavior == configIntakeBehaviorSwallow
 	if !isValidBehavior {
 		return fmt.Errorf(`"intake.behavior" has an invalid value "%s"`, behavior)
 	}

@@ -87,6 +87,8 @@ receivers:
           fail_on_invalid_key: true
 ```
 
+There is also a `behavior: swallow` setting, which causes the receiver to discard the `/intake` data but to still return a `202 Accepted`.
+
 ### Default Attributes
 
 - `dd.span.Resource`: The datadog resource name (as distinct from the span name)
