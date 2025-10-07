@@ -469,6 +469,13 @@ func (ddr *datadogReceiver) handleSketches(w http.ResponseWriter, req *http.Requ
 func (ddr *datadogReceiver) handleIntake(w http.ResponseWriter, req *http.Request) {
 	if ddr.intakeReverseProxy == nil {
 		http.Error(w, "intake endpoint not enabled", http.StatusMethodNotAllowed)
+	} else if ddr.config.Intake.Behavior == configIntakeBehaviorSwallow {
+		w.Header().Set("content-type", "text/plain")
+		w.Header().Set("content-length", "8")
+		w.Header().Set("x-content-type-options", "nosniff")
+		// at the time of writing `date` and `strict-transport-security` are also set by Datadog
+		w.WriteHeader(202)
+		w.Write([]byte("Accepted"))
 	} else {
 		ddr.intakeReverseProxy.ServeHTTP(w, req)
 	}
