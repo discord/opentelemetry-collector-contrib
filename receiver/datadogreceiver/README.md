@@ -126,6 +126,8 @@ receivers:
           fail_on_invalid_key: true
 ```
 
+There is also a `behavior: swallow` setting, which causes the receiver to discard the `/intake` data but to still return a `202 Accepted`.
+
 ### Metric Tag→Attribute Conversion
 
 Datadog [metric tags](https://docs.datadoghq.com/getting_started/tagging/) are expected to be in a `key:value` format.
