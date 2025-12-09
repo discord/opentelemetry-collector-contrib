@@ -90,6 +90,13 @@ func newMetricsExporter(
 		options = append(options, otlpmetrics.WithUnits())
 	}
 
+	if featuregates.AttributeSliceMultiTagExportingFeatureGate.IsEnabled() {
+		params.Logger.Info("Metrics with slice attributes will be converted into distinct tags (instead of converted to a raw string).")
+		options = append(options, otlpmetrics.WithEncodeSliceMetadataAsTags())
+	} else {
+		params.Logger.Info("Metrics with slice attributes will be converted to a raw string.")
+	}
+
 	tr, err := otlpmetrics.NewDefaultTranslator(params.TelemetrySettings, attrsTranslator, options...)
 	if err != nil {
 		return nil, err
