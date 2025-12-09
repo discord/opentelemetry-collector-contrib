@@ -580,11 +580,10 @@ replace github.com/openshift/api v3.9.0+incompatible => github.com/openshift/api
 exclude github.com/DataDog/agent-payload/v5 v5.0.59
 
 // HACK for rate propagation
-replace github.com/DataDog/datadog-agent/pkg/opentelemetry-mapping-go/otlp/metrics v0.71.0-devel.0.20250902202452-61c2536752eb => github.com/discord/datadog-agent/pkg/opentelemetry-mapping-go/otlp/metrics v0.0.0-20251007175452-3dec9210c1a8
+replace github.com/DataDog/datadog-agent/pkg/opentelemetry-mapping-go/otlp/metrics v0.71.0-devel.0.20250902202452-61c2536752eb => github.com/discord/datadog-agent/pkg/opentelemetry-mapping-go/otlp/metrics v0.0.0-20251209224401-519c84451694
 
 // HACK for rate propagation
-replace github.com/DataDog/datadog-agent/comp/otelcol/otlp/components/exporter/serializerexporter v0.71.0-devel.0.20250902202452-61c2536752eb => github.com/discord/datadog-agent/comp/otelcol/otlp/components/exporter/serializerexporter v0.0.0-20251007175452-3dec9210c1a8
-
+replace github.com/DataDog/datadog-agent/comp/otelcol/otlp/components/exporter/serializerexporter v0.71.0-devel.0.20250902202452-61c2536752eb => github.com/discord/datadog-agent/comp/otelcol/otlp/components/exporter/serializerexporter v0.0.0-20251209224401-519c84451694
 
 retract (
 	v0.76.2

@@ -76,8 +76,6 @@ github.com/DataDog/datadog-agent/comp/otelcol/logsagentpipeline/logsagentpipelin
 github.com/DataDog/datadog-agent/comp/otelcol/logsagentpipeline/logsagentpipelineimpl v0.71.0-devel.0.20250902202452-61c2536752eb/go.mod h1:f9VkZkYtbCZWS3Mw0tcFO0K+nZm5zZOraMO3sob06W4=
 github.com/DataDog/datadog-agent/comp/otelcol/otlp/components/exporter/logsagentexporter v0.71.0-devel.0.20250902202452-61c2536752eb h1:ra33O4wTiVuSxWK2czqwpGn7fCQlfS53DJeDfv8CLrs=
 github.com/DataDog/datadog-agent/comp/otelcol/otlp/components/exporter/logsagentexporter v0.71.0-devel.0.20250902202452-61c2536752eb/go.mod h1:cop+8mUnL6RoYFEwtrR8KD6gvUlt7KRtWdY/l6Ll3AM=
-github.com/DataDog/datadog-agent/comp/otelcol/otlp/components/exporter/serializerexporter v0.71.0-devel.0.20250902202452-61c2536752eb h1:RDCh+GpUN6lNPKcVkZJgvTnboOJifunb6y2jiWoazv8=
-github.com/DataDog/datadog-agent/comp/otelcol/otlp/components/exporter/serializerexporter v0.71.0-devel.0.20250902202452-61c2536752eb/go.mod h1:3O2vS3DJeKVeiSOvEb1KdXpjjiEj0pfl7/fgoxKEuPU=
 github.com/DataDog/datadog-agent/comp/otelcol/otlp/components/metricsclient v0.71.0-devel.0.20250902202452-61c2536752eb h1:PnPj7e7NyXwWMltQI4FjPqYe3vxk+sC7T6FBBVUrxL4=
 github.com/DataDog/datadog-agent/comp/otelcol/otlp/components/metricsclient v0.71.0-devel.0.20250902202452-61c2536752eb/go.mod h1:0pJ8unHLvA+BbDPvVyF7+61C6OeRTIWBgv5Zu4HOIIc=
 github.com/DataDog/datadog-agent/comp/otelcol/otlp/components/statsprocessor v0.71.0-devel.0.20250902202452-61c2536752eb h1:4n+aTSBv3Dbu1W34cgnB9u8moMTXbhAjpjXpOLhPDYk=
@@ -156,8 +154,6 @@ github.com/DataDog/datadog-agent/pkg/opentelemetry-mapping-go/otlp/attributes v0
 github.com/DataDog/datadog-agent/pkg/opentelemetry-mapping-go/otlp/attributes v0.71.0-devel.0.20250902202452-61c2536752eb/go.mod h1:XeZj0IgsiL3vgeEGTucf61JvJRh1LxWMUbZA/XJsPD0=
 github.com/DataDog/datadog-agent/pkg/opentelemetry-mapping-go/otlp/logs v0.71.0-devel.0.20250820180704-be0d2d237646 h1:YoXiJ+VmAhHSNKbk+yEoQaT/+9Qn5672Er7QmLHF5+Y=
 github.com/DataDog/datadog-agent/pkg/opentelemetry-mapping-go/otlp/logs v0.71.0-devel.0.20250820180704-be0d2d237646/go.mod h1:Iw/UkIgbPVqbAexPtKa1ka4oVFmQnLnNkwi+kgDADlQ=
-github.com/DataDog/datadog-agent/pkg/opentelemetry-mapping-go/otlp/metrics v0.71.0-devel.0.20250902202452-61c2536752eb h1:e9Q1q60GnXPA96WhSDU9GON4h/G41gWELQVC8E/MFcs=
-github.com/DataDog/datadog-agent/pkg/opentelemetry-mapping-go/otlp/metrics v0.71.0-devel.0.20250902202452-61c2536752eb/go.mod h1:DpEGvs9JcdZTIPXvP6eXmNt1FT0MBud2ZKAJo+Oqy78=
 github.com/DataDog/datadog-agent/pkg/orchestrator/model v0.71.0-devel.0.20250902202452-61c2536752eb h1:StlnOA9LqXPRXoE+vH+RwJ9rweoZb5LAfiBtCHF5Nu0=
 github.com/DataDog/datadog-agent/pkg/orchestrator/model v0.71.0-devel.0.20250902202452-61c2536752eb/go.mod h1:got+l+zBKpkMeKwWR9HRLzW93aTXXZnlTbfygk21PW0=
 github.com/DataDog/datadog-agent/pkg/process/util/api v0.71.0-devel.0.20250902202452-61c2536752eb h1:wwEJT4mx9xv1ZGniS3e//eB+HsJiAcw0erKwCKvT11g=
@@ -386,12 +382,10 @@ github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f/go.mod h1:cu
 github.com/dgryski/go-sip13 v0.0.0-20181026042036-e10d5fee7954/go.mod h1:vAd38F8PWV+bWy6jNmig1y/TA+kYO4g3RSRF0IAv0no=
 github.com/digitalocean/godo v1.157.0 h1:ReELaS6FxXNf8gryUiVH0wmyUmZN8/NCmBX4gXd3F0o=
 github.com/digitalocean/godo v1.157.0/go.mod h1:tYeiWY5ZXVpU48YaFv0M5irUFHXGorZpDNm7zzdWMzM=
-github.com/discord/datadog-agent/comp/otelcol/otlp/components/exporter/serializerexporter v0.0.0-20251007173318-ec83236257d8 h1:Bq+RnnVwIEaUpd9FyiRRbT+rF2WqvnottBRYSnWLqrw=
-github.com/discord/datadog-agent/comp/otelcol/otlp/components/exporter/serializerexporter v0.0.0-20251007173318-ec83236257d8/go.mod h1:3O2vS3DJeKVeiSOvEb1KdXpjjiEj0pfl7/fgoxKEuPU=
-github.com/discord/datadog-agent/comp/otelcol/otlp/components/exporter/serializerexporter v0.0.0-20251007175452-3dec9210c1a8 h1:JFCjhzssZJ2LAR/rlmWRss7TAgAljJFmfHZtuwRrWD8=
-github.com/discord/datadog-agent/comp/otelcol/otlp/components/exporter/serializerexporter v0.0.0-20251007175452-3dec9210c1a8/go.mod h1:3O2vS3DJeKVeiSOvEb1KdXpjjiEj0pfl7/fgoxKEuPU=
-github.com/discord/datadog-agent/pkg/opentelemetry-mapping-go/otlp/metrics v0.0.0-20251007175452-3dec9210c1a8 h1:iQp8ydVyzgyl9gkIMdWdfXVp36vxkPCG0GWis54kK8w=
-github.com/discord/datadog-agent/pkg/opentelemetry-mapping-go/otlp/metrics v0.0.0-20251007175452-3dec9210c1a8/go.mod h1:DpEGvs9JcdZTIPXvP6eXmNt1FT0MBud2ZKAJo+Oqy78=
+github.com/discord/datadog-agent/comp/otelcol/otlp/components/exporter/serializerexporter v0.0.0-20251209224401-519c84451694 h1:Lh5DA7P7yfvPm248EDAUa06PkMvfHAmzqKB1WCny7Pg=
+github.com/discord/datadog-agent/comp/otelcol/otlp/components/exporter/serializerexporter v0.0.0-20251209224401-519c84451694/go.mod h1:m2Wx07v5PzUd5qkqZZhI2U7ruiDbXYGM0tzxWD2HVA8=
+github.com/discord/datadog-agent/pkg/opentelemetry-mapping-go/otlp/metrics v0.0.0-20251209224401-519c84451694 h1:VQqFc+d6ZfAj7vU/W40dQ4Ems3f+6/AaORaagYKXPoA=
+github.com/discord/datadog-agent/pkg/opentelemetry-mapping-go/otlp/metrics v0.0.0-20251209224401-519c84451694/go.mod h1:DpEGvs9JcdZTIPXvP6eXmNt1FT0MBud2ZKAJo+Oqy78=
 github.com/distribution/reference v0.6.0 h1:0IXCQ5g4/QMHHkarYzh5l+u8T3t73zM5QvfrDyIgxBk=
 github.com/distribution/reference v0.6.0/go.mod h1:BbU0aIcezP1/5jX/8MP0YiH4SdvB5Y4f/wlDRiLyi3E=
 github.com/dnaeon/go-vcr v1.2.0 h1:zHCHvJYTMh1N7xnV7zf1m1GPBF9Ad0Jk/whtQ1663qI=
