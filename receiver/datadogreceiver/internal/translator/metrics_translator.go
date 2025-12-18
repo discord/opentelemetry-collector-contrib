@@ -16,7 +16,7 @@ import (
 type MetricsTranslator struct {
 	sync.RWMutex
 	buildInfo         component.BuildInfo
-	lastTs            map[identity.Stream]pcommon.Timestamp
+	lastTs            map[uint64]pcommon.Timestamp
 	stringPool        *StringPool
 	idleSeriesTimeout time.Duration
 }
@@ -24,7 +24,7 @@ type MetricsTranslator struct {
 func NewMetricsTranslator(buildInfo component.BuildInfo, idleSeriesTimeout time.Duration) *MetricsTranslator {
 	return &MetricsTranslator{
 		buildInfo:         buildInfo,
-		lastTs:            make(map[identity.Stream]pcommon.Timestamp),
+		lastTs:            make(map[uint64]pcommon.Timestamp),
 		stringPool:        newStringPool(),
 		idleSeriesTimeout: idleSeriesTimeout,
 	}
@@ -33,14 +33,24 @@ func NewMetricsTranslator(buildInfo component.BuildInfo, idleSeriesTimeout time.
 func (mt *MetricsTranslator) streamHasTimestamp(stream identity.Stream) (pcommon.Timestamp, bool) {
 	mt.RLock()
 	defer mt.RUnlock()
-	ts, ok := mt.lastTs[stream]
+	ts, ok := mt.lastTs[stream.Hash().Sum64()]
 	return ts, ok
 }
 
-func (mt *MetricsTranslator) updateLastTsForStream(stream identity.Stream, ts pcommon.Timestamp) {
-	mt.Lock()
-	defer mt.Unlock()
-	mt.lastTs[stream] = ts
+// updateLastTsForStream is intentionally a no-op: recording a timestamp per
+// stream means taking a full lock and writing to the map on every data
+// point, which is a meaningful throughput cost at volume, and it would
+// resurrect the original unbounded-growth problem this map has caused
+// before. It also changes StartTimestamp behavior for delta-temporality
+// points in ways that could break existing metric expectations downstream.
+// lastTs must stay empty; see a67564b6cc1 ("Hash the stream identity instead
+// of storing the object").
+func (mt *MetricsTranslator) updateLastTsForStream(_ identity.Stream, _ pcommon.Timestamp) {
+	//mt.Lock()
+	//defer mt.Unlock()
+	// Store the hash instead of the stream itself to keep the memory footprint small
+	// (the `Stream` contains a lot of data we never use).
+	//mt.lastTs[stream] = ts
 }
 
 // trackStreamTimestamp looks up the last-seen timestamp for the given stream
@@ -86,15 +96,15 @@ func (mt *MetricsTranslator) Prune() int {
 
 	// Create a new map.
 	// We let it grow organically to avoid allocating memory for the stale data.
-	newMap := make(map[identity.Stream]pcommon.Timestamp)
+	newMap := make(map[uint64]pcommon.Timestamp)
 
-	for stream, ts := range mt.lastTs {
+	for hash, ts := range mt.lastTs {
 		// Convert pcommon timestamp (nanos) to time.Time.
 		tsTime := time.Unix(0, int64(ts))
 
 		// If the age is less than the max idle time, keep it.
 		if now.Sub(tsTime) < mt.idleSeriesTimeout {
-			newMap[stream] = ts
+			newMap[hash] = ts
 		}
 	}
 

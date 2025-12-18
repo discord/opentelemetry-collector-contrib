@@ -5,7 +5,9 @@ package translator
 
 import (
 	"bytes"
+	"fmt"
 	"io"
+	"math/rand"
 	"net/http"
 	"testing"
 
@@ -674,5 +676,42 @@ func TestTranslateSeriesV2StartTimestampOrdering(t *testing.T) {
 			}
 			tt.expect(t, results)
 		})
+	}
+}
+
+// BenchmarkTranslateSeriesV2 translates a ton of metrics,
+// good for measuring changes in both execution time and memory usage.
+func BenchmarkTranslateSeriesV2(b *testing.B) {
+	for b.Loop() {
+		mt := createMetricsTranslator()
+		for i := 0; i < 1000000; i++ {
+			series := []*gogen.MetricPayload_MetricSeries{
+				{
+					Resources: []*gogen.MetricPayload_Resource{
+						{
+							Type: "host",
+							Name: fmt.Sprintf("Host%d", i),
+						},
+					},
+					Metric: fmt.Sprintf("TestUnspecified%d", rand.Int31n(1000)),
+					Tags: []string{
+						fmt.Sprintf("env:tag%d", rand.Int31n(10)),
+						fmt.Sprintf("version:tag%d", rand.Int31n(100)),
+					},
+					Points: []*gogen.MetricPayload_MetricPoint{
+						{
+							Timestamp: 1636629071,
+							Value:     rand.Float64(),
+						},
+						{
+							Timestamp: 1636629081,
+							Value:     rand.Float64(),
+						},
+					},
+					Type: gogen.MetricPayload_GAUGE,
+				},
+			}
+			mt.TranslateSeriesV2(series)
+		}
 	}
 }
