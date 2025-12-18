@@ -15,14 +15,14 @@ import (
 type MetricsTranslator struct {
 	sync.RWMutex
 	buildInfo  component.BuildInfo
-	lastTs     map[identity.Stream]pcommon.Timestamp
+	lastTs     map[uint64]pcommon.Timestamp
 	stringPool *StringPool
 }
 
 func NewMetricsTranslator(buildInfo component.BuildInfo) *MetricsTranslator {
 	return &MetricsTranslator{
 		buildInfo:  buildInfo,
-		lastTs:     make(map[identity.Stream]pcommon.Timestamp),
+		lastTs:     make(map[uint64]pcommon.Timestamp),
 		stringPool: newStringPool(),
 	}
 }
@@ -30,12 +30,16 @@ func NewMetricsTranslator(buildInfo component.BuildInfo) *MetricsTranslator {
 func (mt *MetricsTranslator) streamHasTimestamp(stream identity.Stream) (pcommon.Timestamp, bool) {
 	mt.RLock()
 	defer mt.RUnlock()
-	ts, ok := mt.lastTs[stream]
+	ts, ok := mt.lastTs[stream.Hash().Sum64()]
 	return ts, ok
 }
 
 func (mt *MetricsTranslator) updateLastTsForStream(stream identity.Stream, ts pcommon.Timestamp) {
 	mt.Lock()
 	defer mt.Unlock()
-	mt.lastTs[stream] = ts
+	// Store the hash instead of the stream itself to keep the memory footprint small
+	// (the `Stream` contains a lot of data we never use).
+	// WARNING: `lastTs` will grow unbounded since we never delete from the map.
+	// With enough metric variance (cardinality), otelcol will eventually run out of memory.
+	mt.lastTs[stream.Hash().Sum64()] = ts
 }
