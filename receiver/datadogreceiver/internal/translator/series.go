@@ -113,7 +113,7 @@ func (mt *MetricsTranslator) TranslateSeriesV1(series SeriesList) pmetric.Metric
 			if ts, ok := mt.streamHasTimestamp(stream); ok {
 				dp.SetStartTimestamp(ts)
 			}
-			mt.updateLastTsForStream(stream, dp.Timestamp())
+			//mt.updateLastTsForStream(stream, dp.Timestamp())
 		}
 	}
 	return bt.Metrics
@@ -174,7 +174,7 @@ func (mt *MetricsTranslator) TranslateSeriesV2(series []*gogen.MetricPayload_Met
 			if ok {
 				dp.SetStartTimestamp(ts)
 			}
-			mt.updateLastTsForStream(stream, dp.Timestamp())
+			//mt.updateLastTsForStream(stream, dp.Timestamp())
 		}
 	}
 	return bt.Metrics
