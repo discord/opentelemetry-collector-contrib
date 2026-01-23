@@ -134,7 +134,7 @@ func (mt *MetricsTranslator) TranslateSeriesV2(series []*gogen.MetricPayload_Met
 			}
 			dimensions.resourceAttrs.PutStr(k, v)
 		}
-		dimensions.resourceAttrs.PutStr("source", serie.SourceTypeName) // TODO: check if this is correct handling of SourceTypeName field
+		dimensions.resourceAttrs.PutStr("datadog_source_type_name", serie.SourceTypeName) // TODO: check if this is correct handling of SourceTypeName field
 		metric, metricID := bt.Lookup(dimensions)
 
 		switch serie.Type {
