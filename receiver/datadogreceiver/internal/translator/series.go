@@ -134,7 +134,14 @@ func (mt *MetricsTranslator) TranslateSeriesV2(series []*gogen.MetricPayload_Met
 			}
 			dimensions.resourceAttrs.PutStr(k, v)
 		}
-		dimensions.resourceAttrs.PutStr("datadog_source_type_name", serie.SourceTypeName) // TODO: check if this is correct handling of SourceTypeName field
+		dimensions.resourceAttrs.PutStr("datadog.source_type_name", serie.SourceTypeName) // TODO: check if this is correct handling of SourceTypeName field
+		if serie.Metadata != nil {
+			if serie.Metadata.Origin != nil {
+				dimensions.resourceAttrs.PutInt("datadog.metadata.origin_product", (int64)(serie.Metadata.Origin.OriginProduct))
+				dimensions.resourceAttrs.PutInt("datadog.metadata.origin_category", (int64)(serie.Metadata.Origin.OriginCategory))
+				dimensions.resourceAttrs.PutInt("datadog.metadata.origin_service", (int64)(serie.Metadata.Origin.OriginService))
+			}
+		}
 		metric, metricID := bt.Lookup(dimensions)
 
 		switch serie.Type {
