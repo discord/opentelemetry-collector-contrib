@@ -60,14 +60,6 @@ func (*Consumer) toDataType(dt metrics.DataType) (out datadogV2.MetricIntakeType
 // runningMetrics gets the running metrics for the exporter.
 func (c *Consumer) runningMetrics(timestamp uint64, buildInfo component.BuildInfo, metadata metrics.Metadata) (series []datadogV2.MetricSeries) {
 	buildTags := TagsFromBuildInfo(buildInfo)
-	for host := range c.seenHosts {
-		// Report the host as running
-		runningMetric := DefaultMetrics("metrics", host, timestamp, buildTags)
-		if c.gatewayUsage != nil {
-			series = append(series, GatewayUsageGauge(timestamp, host, buildTags, c.gatewayUsage))
-		}
-		series = append(series, runningMetric...)
-	}
 
 	for tag := range c.seenTags {
 		runningMetrics := DefaultMetrics("metrics", "", timestamp, buildTags)
@@ -127,6 +119,29 @@ func (c *Consumer) ConsumeTimeSeries(
 	})
 	if rateInterval != nil {
 		met.SetInterval(rateInterval.(int64))
+	}
+	var product *int32
+	if dims.OriginProduct() != 0 {
+		product = datadog.PtrInt32(int32(dims.OriginProduct()))
+	}
+	var service *int32
+	if dims.OriginSubProduct() != 0 {
+		service = datadog.PtrInt32(int32(dims.OriginProductDetail()))
+	}
+	var category *int32
+	if dims.OriginSubProduct() != 0 {
+		category = datadog.PtrInt32(int32(dims.OriginSubProduct()))
+	}
+	if product != nil || service != nil || category != nil {
+		met.SetMetadata(datadogV2.MetricMetadata{
+			Origin: &datadogV2.MetricOrigin{
+				Product: product,
+				Service: service,
+				// I'm almost certain that this is "Category" in the documented API
+				// (because it's the only field not accounted for)
+				MetricType: category,
+			},
+		})
 	}
 	c.ms = append(c.ms, met)
 }
