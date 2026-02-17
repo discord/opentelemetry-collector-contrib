@@ -75,6 +75,8 @@ github.com/discord/datadog-agent/pkg/opentelemetry-mapping-go/otlp/metrics v0.0.
 github.com/discord/datadog-agent/pkg/opentelemetry-mapping-go/otlp/metrics v0.0.0-20260205190742-5e892f4a8012/go.mod h1:SAuT6Ckn9p3Q2WnDjXTSy2o4G+rp8/b1h3WlMmgtUJw=
 github.com/discord/datadog-agent/pkg/opentelemetry-mapping-go/otlp/metrics v0.0.0-20260206021927-95bcc273d6db h1:XPSJQYqKH1Q6O/hrv4N6h+im8htYmWFOuCXSFZc91Hs=
 github.com/discord/datadog-agent/pkg/opentelemetry-mapping-go/otlp/metrics v0.0.0-20260206021927-95bcc273d6db/go.mod h1:SAuT6Ckn9p3Q2WnDjXTSy2o4G+rp8/b1h3WlMmgtUJw=
+github.com/discord/datadog-agent/pkg/opentelemetry-mapping-go/otlp/metrics v0.0.0-20260217191124-802084d3aef8 h1:QDvUoGzjVneDYFaBS2v8zllQiFjBqnA4WwkrYmNGUmQ=
+github.com/discord/datadog-agent/pkg/opentelemetry-mapping-go/otlp/metrics v0.0.0-20260217191124-802084d3aef8/go.mod h1:SAuT6Ckn9p3Q2WnDjXTSy2o4G+rp8/b1h3WlMmgtUJw=
 github.com/dustin/go-humanize v1.0.0/go.mod h1:HtrtbFcZ19U5GC7JDqmcUSB87Iq5E25KnS6fMYU6eOk=
 github.com/dustin/go-humanize v1.0.1 h1:GzkhY7T5VNhEkwH0PVJgjz+fX1rhBrR7pRT3mDkpeCY=
 github.com/dustin/go-humanize v1.0.1/go.mod h1:Mu1zIs6XwVuF/gI1OepvI0qD18qycQx+mFykh5fBlto=

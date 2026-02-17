@@ -308,6 +308,8 @@ github.com/discord/datadog-agent/comp/otelcol/otlp/components/exporter/serialize
 github.com/discord/datadog-agent/comp/otelcol/otlp/components/exporter/serializerexporter v0.0.0-20260205192806-4f99b9f94783/go.mod h1:8IvYGu3CYIKcAo8PpAwBaSjhtZ/zskzhS0xtQ34KGoQ=
 github.com/discord/datadog-agent/comp/otelcol/otlp/components/exporter/serializerexporter v0.0.0-20260206021927-95bcc273d6db h1:EN7zYxURNYK3AP8A6Hzv8s6lcjDt2yHpZy2j6Iu168s=
 github.com/discord/datadog-agent/comp/otelcol/otlp/components/exporter/serializerexporter v0.0.0-20260206021927-95bcc273d6db/go.mod h1:8IvYGu3CYIKcAo8PpAwBaSjhtZ/zskzhS0xtQ34KGoQ=
+github.com/discord/datadog-agent/comp/otelcol/otlp/components/exporter/serializerexporter v0.0.0-20260217191124-802084d3aef8 h1:yKAkYC3XtrobKfy+ePMIxsuYmiy3LZ8EN4tCswJwwHQ=
+github.com/discord/datadog-agent/comp/otelcol/otlp/components/exporter/serializerexporter v0.0.0-20260217191124-802084d3aef8/go.mod h1:8IvYGu3CYIKcAo8PpAwBaSjhtZ/zskzhS0xtQ34KGoQ=
 github.com/discord/datadog-agent/pkg/opentelemetry-mapping-go/otlp/metrics v0.0.0-20260106005115-4b77a1df1b84 h1:yE9USu5pPR3d6ud3MZjqs8oAh4afn6LU507GHqDqbx0=
 github.com/discord/datadog-agent/pkg/opentelemetry-mapping-go/otlp/metrics v0.0.0-20260106005115-4b77a1df1b84/go.mod h1:SAuT6Ckn9p3Q2WnDjXTSy2o4G+rp8/b1h3WlMmgtUJw=
 github.com/discord/datadog-agent/pkg/opentelemetry-mapping-go/otlp/metrics v0.0.0-20260203190011-1802020df239 h1:SyvmO42OpynhQzKETMjr5TTr0FUayUidyRBYHp2kv5A=
@@ -326,6 +328,8 @@ github.com/discord/datadog-agent/pkg/opentelemetry-mapping-go/otlp/metrics v0.0.
 github.com/discord/datadog-agent/pkg/opentelemetry-mapping-go/otlp/metrics v0.0.0-20260205192806-4f99b9f94783/go.mod h1:SAuT6Ckn9p3Q2WnDjXTSy2o4G+rp8/b1h3WlMmgtUJw=
 github.com/discord/datadog-agent/pkg/opentelemetry-mapping-go/otlp/metrics v0.0.0-20260206021927-95bcc273d6db h1:XPSJQYqKH1Q6O/hrv4N6h+im8htYmWFOuCXSFZc91Hs=
 github.com/discord/datadog-agent/pkg/opentelemetry-mapping-go/otlp/metrics v0.0.0-20260206021927-95bcc273d6db/go.mod h1:SAuT6Ckn9p3Q2WnDjXTSy2o4G+rp8/b1h3WlMmgtUJw=
+github.com/discord/datadog-agent/pkg/opentelemetry-mapping-go/otlp/metrics v0.0.0-20260217191124-802084d3aef8 h1:QDvUoGzjVneDYFaBS2v8zllQiFjBqnA4WwkrYmNGUmQ=
+github.com/discord/datadog-agent/pkg/opentelemetry-mapping-go/otlp/metrics v0.0.0-20260217191124-802084d3aef8/go.mod h1:SAuT6Ckn9p3Q2WnDjXTSy2o4G+rp8/b1h3WlMmgtUJw=
 github.com/discord/datadog-agent/pkg/serializer v0.0.0-20260204011016-a53ef6b06994 h1:4IJNhEq1lqeUlqgMqhoeJxva4ObhbdMHOW/wUovsIN0=
 github.com/discord/datadog-agent/pkg/serializer v0.0.0-20260204011016-a53ef6b06994/go.mod h1:J6TkxQPnjBNxg8TTQblc6eSQaPSYVM6vuJ++j5FzIRM=
 github.com/discord/datadog-agent/pkg/serializer v0.0.0-20260204192427-9faefd6d85ce h1:wOAXAXxXg0UHrU8mDRlP5mhTNy96VYzp33x6MQyMYJ0=
@@ -340,6 +344,8 @@ github.com/discord/datadog-agent/pkg/serializer v0.0.0-20260205192806-4f99b9f947
 github.com/discord/datadog-agent/pkg/serializer v0.0.0-20260205192806-4f99b9f94783/go.mod h1:J6TkxQPnjBNxg8TTQblc6eSQaPSYVM6vuJ++j5FzIRM=
 github.com/discord/datadog-agent/pkg/serializer v0.0.0-20260206021927-95bcc273d6db h1:GkcWbvQrM5tyQPNyVUUeA5i4pN4+UIAK1z/ujOeN2Cs=
 github.com/discord/datadog-agent/pkg/serializer v0.0.0-20260206021927-95bcc273d6db/go.mod h1:J6TkxQPnjBNxg8TTQblc6eSQaPSYVM6vuJ++j5FzIRM=
+github.com/discord/datadog-agent/pkg/serializer v0.0.0-20260217191124-802084d3aef8 h1:zoYHeDGtHxlCDCnFLKte7tAJ4/HsjH5RsLzxE2mifJo=
+github.com/discord/datadog-agent/pkg/serializer v0.0.0-20260217191124-802084d3aef8/go.mod h1:J6TkxQPnjBNxg8TTQblc6eSQaPSYVM6vuJ++j5FzIRM=
 github.com/dustin/go-humanize v1.0.0/go.mod h1:HtrtbFcZ19U5GC7JDqmcUSB87Iq5E25KnS6fMYU6eOk=
 github.com/dustin/go-humanize v1.0.1 h1:GzkhY7T5VNhEkwH0PVJgjz+fX1rhBrR7pRT3mDkpeCY=
 github.com/dustin/go-humanize v1.0.1/go.mod h1:Mu1zIs6XwVuF/gI1OepvI0qD18qycQx+mFykh5fBlto=
