@@ -341,19 +341,19 @@ replace github.com/open-telemetry/opentelemetry-collector-contrib/pkg/resourceto
 exclude github.com/DataDog/agent-payload/v5 v5.0.59
 
 // HACK for slice attribute encoding
-replace github.com/DataDog/datadog-agent/pkg/opentelemetry-mapping-go/otlp/attributes v0.74.0-rc.3 => github.com/discord/datadog-agent/pkg/opentelemetry-mapping-go/otlp/attributes v0.0.0-20260224004724-ee0585415f8b
+replace github.com/DataDog/datadog-agent/pkg/opentelemetry-mapping-go/otlp/attributes v0.74.0-rc.3 => github.com/discord/datadog-agent/pkg/opentelemetry-mapping-go/otlp/attributes v0.0.0-20260511173604-ca48eb6212a3
 
 // HACK for slice attribute encoding
-replace github.com/DataDog/datadog-agent/pkg/opentelemetry-mapping-go/otlp/logs v0.74.0-rc.3 => github.com/discord/datadog-agent/pkg/opentelemetry-mapping-go/otlp/logs v0.0.0-20260224004724-ee0585415f8b
+replace github.com/DataDog/datadog-agent/pkg/opentelemetry-mapping-go/otlp/logs v0.74.0-rc.3 => github.com/discord/datadog-agent/pkg/opentelemetry-mapping-go/otlp/logs v0.0.0-20260511173604-ca48eb6212a3
 
 // HACK for rate propagation
-replace github.com/DataDog/datadog-agent/pkg/opentelemetry-mapping-go/otlp/metrics v0.74.0-rc.3 => github.com/discord/datadog-agent/pkg/opentelemetry-mapping-go/otlp/metrics v0.0.0-20260224004724-ee0585415f8b
+replace github.com/DataDog/datadog-agent/pkg/opentelemetry-mapping-go/otlp/metrics v0.74.0-rc.3 => github.com/discord/datadog-agent/pkg/opentelemetry-mapping-go/otlp/metrics v0.0.0-20260511173604-ca48eb6212a3
 
 // HACK for rate propagation
-replace github.com/DataDog/datadog-agent/comp/otelcol/otlp/components/exporter/serializerexporter v0.75.0-devel.0.20251210003927-d2b31b212445 => github.com/discord/datadog-agent/comp/otelcol/otlp/components/exporter/serializerexporter v0.0.0-20260224004724-ee0585415f8b
+replace github.com/DataDog/datadog-agent/comp/otelcol/otlp/components/exporter/serializerexporter v0.75.0-devel.0.20251210003927-d2b31b212445 => github.com/discord/datadog-agent/comp/otelcol/otlp/components/exporter/serializerexporter v0.0.0-20260511173604-ca48eb6212a3
 
 // HACK for ???
-replace github.com/DataDog/datadog-agent/pkg/serializer v0.74.0-rc.3 => github.com/discord/datadog-agent/pkg/serializer v0.0.0-20260224004724-ee0585415f8b
+replace github.com/DataDog/datadog-agent/pkg/serializer v0.74.0-rc.3 => github.com/discord/datadog-agent/pkg/serializer v0.0.0-20260511173604-ca48eb6212a3
 
 retract (
 	v0.76.2

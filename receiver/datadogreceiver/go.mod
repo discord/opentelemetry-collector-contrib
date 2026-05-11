@@ -174,4 +174,7 @@ replace github.com/open-telemetry/opentelemetry-collector-contrib/internal/commo
 replace github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/ecsutil => ../../internal/aws/ecsutil
 
 // HACK for rate propagation
-replace github.com/DataDog/datadog-agent/pkg/opentelemetry-mapping-go/otlp/metrics v0.73.0-rc.11 => github.com/discord/datadog-agent/pkg/opentelemetry-mapping-go/otlp/metrics v0.0.0-20260217191124-802084d3aef8
+replace github.com/DataDog/datadog-agent/pkg/opentelemetry-mapping-go/otlp/metrics v0.73.0-rc.11 => github.com/discord/datadog-agent/pkg/opentelemetry-mapping-go/otlp/metrics v0.0.0-20260511173604-ca48eb6212a3
+
+// HACK for slice attribute encoding (required by forked metrics package above)
+replace github.com/DataDog/datadog-agent/pkg/opentelemetry-mapping-go/otlp/attributes v0.73.0-rc.11 => github.com/discord/datadog-agent/pkg/opentelemetry-mapping-go/otlp/attributes v0.0.0-20260511173604-ca48eb6212a3
