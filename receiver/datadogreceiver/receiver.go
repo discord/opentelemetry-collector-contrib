@@ -4,6 +4,7 @@
 package datadogreceiver // import "github.com/open-telemetry/opentelemetry-collector-contrib/receiver/datadogreceiver"
 
 import (
+	"bytes"
 	"context"
 	"encoding/json"
 	"errors"
@@ -484,11 +485,18 @@ func (ddr *datadogReceiver) handleCheckRun(w http.ResponseWriter, req *http.Requ
 
 	var services []translator.ServiceCheck
 
-	err = json.Unmarshal(buf.Bytes(), &services)
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusBadRequest)
-		ddr.params.Logger.Error(err.Error())
-		return
+	// Not every check_run body is an array of service checks. The Agent's connectivity diagnose
+	// posts a bare object as a reachability probe, and an empty object is submitted when there is
+	// nothing to report. Datadog's intake tolerates both, so treat any body that is not an array
+	// as carrying no service checks. A body that does open as an array is still parsed strictly,
+	// so a corrupt service check payload keeps surfacing as a client error.
+	if body := bytes.TrimLeft(buf.Bytes(), " \t\r\n"); len(body) > 0 && body[0] == '[' {
+		err = json.Unmarshal(body, &services)
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusBadRequest)
+			ddr.params.Logger.Error(err.Error())
+			return
+		}
 	}
 
 	metrics := ddr.metricsTranslator.TranslateServices(services)

@@ -823,6 +823,96 @@ func TestDatadogServices_EndToEnd(t *testing.T) {
 	assert.Equal(t, "hosta", hostName.AsString())
 }
 
+// The check_run intake receives JSON bodies that are not an array of service checks. The Agent's
+// connectivity diagnose posts a bare object as a reachability probe, and an empty object is
+// submitted when there is nothing to report. Datadog's own intake tolerates both, so carrying no
+// service checks must not fail the request.
+func TestDatadogServices_NonArrayPayload_EndToEnd(t *testing.T) {
+	tests := []struct {
+		name    string
+		payload string
+	}{
+		{name: "empty object", payload: `{}`},
+		{name: "connectivity diagnose probe", payload: `{"check": "test", "status": 0}`},
+		{name: "empty body", payload: ``},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			cfg := createDefaultConfig().(*Config)
+			cfg.Endpoint = "localhost:0" // Using a randomly assigned address
+			sink := new(consumertest.MetricsSink)
+
+			dd, err := newDataDogReceiver(
+				t.Context(),
+				cfg,
+				receivertest.NewNopSettings(metadata.Type),
+			)
+			require.NoError(t, err, "Must not error when creating receiver")
+			dd.(*datadogReceiver).nextMetricsConsumer = sink
+
+			require.NoError(t, dd.Start(t.Context(), componenttest.NewNopHost()))
+			defer func() {
+				require.NoError(t, dd.Shutdown(t.Context()))
+			}()
+
+			req, err := http.NewRequest(
+				http.MethodPost,
+				fmt.Sprintf("http://%s/api/v1/check_run", dd.(*datadogReceiver).address),
+				io.NopCloser(bytes.NewReader([]byte(tt.payload))),
+			)
+			require.NoError(t, err, "Must not error when creating request")
+
+			resp, err := http.DefaultClient.Do(req)
+			require.NoError(t, err, "Must not error performing request")
+
+			body, err := io.ReadAll(resp.Body)
+			require.NoError(t, multierr.Combine(err, resp.Body.Close()), "Must not error when reading body")
+			require.Equal(t, http.StatusAccepted, resp.StatusCode, "Response body: %s", string(body))
+			require.JSONEq(t, `{"status": "ok"}`, string(body))
+
+			for _, md := range sink.AllMetrics() {
+				assert.Equal(t, 0, md.DataPointCount(), "Must not emit data points for a payload carrying no service checks")
+			}
+		})
+	}
+}
+
+// Tolerating non-array bodies must not extend to a genuinely corrupt array of service checks:
+// those still have to surface as a client error rather than being silently dropped.
+func TestDatadogServices_MalformedArrayPayload_Rejected(t *testing.T) {
+	cfg := createDefaultConfig().(*Config)
+	cfg.Endpoint = "localhost:0" // Using a randomly assigned address
+	sink := new(consumertest.MetricsSink)
+
+	dd, err := newDataDogReceiver(
+		t.Context(),
+		cfg,
+		receivertest.NewNopSettings(metadata.Type),
+	)
+	require.NoError(t, err, "Must not error when creating receiver")
+	dd.(*datadogReceiver).nextMetricsConsumer = sink
+
+	require.NoError(t, dd.Start(t.Context(), componenttest.NewNopHost()))
+	defer func() {
+		require.NoError(t, dd.Shutdown(t.Context()))
+	}()
+
+	req, err := http.NewRequest(
+		http.MethodPost,
+		fmt.Sprintf("http://%s/api/v1/check_run", dd.(*datadogReceiver).address),
+		io.NopCloser(bytes.NewReader([]byte(`[{"check": "app.working",`))),
+	)
+	require.NoError(t, err, "Must not error when creating request")
+
+	resp, err := http.DefaultClient.Do(req)
+	require.NoError(t, err, "Must not error performing request")
+	require.NoError(t, resp.Body.Close())
+
+	require.Equal(t, http.StatusBadRequest, resp.StatusCode)
+	require.Empty(t, sink.AllMetrics())
+}
+
 func TestDatadogLogsV2_SingleLog_EndToEnd(t *testing.T) {
 	cfg := createDefaultConfig().(*Config)
 	cfg.Endpoint = "localhost:0" // Using a randomly assigned address
