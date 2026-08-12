@@ -5,6 +5,7 @@ go 1.25.0
 require (
 	github.com/DataDog/agent-payload/v5 v5.0.205
 	github.com/DataDog/datadog-agent/pkg/obfuscate v0.81.0
+	github.com/DataDog/datadog-agent/pkg/opentelemetry-mapping-go/otlp/metrics v0.83.0-devel.0.20260714134811-fee4bbf7ff73
 	github.com/DataDog/datadog-agent/pkg/proto v0.81.0
 	github.com/DataDog/datadog-agent/pkg/trace v0.81.0
 	github.com/DataDog/datadog-agent/pkg/trace/stats v0.81.0
@@ -47,7 +48,6 @@ require (
 require (
 	github.com/DataDog/datadog-agent/comp/core/tagger/origindetection v0.81.0 // indirect
 	github.com/DataDog/datadog-agent/pkg/opentelemetry-mapping-go/otlp/attributes v0.83.0-devel.0.20260714134811-fee4bbf7ff73 // indirect
-	github.com/DataDog/datadog-agent/pkg/opentelemetry-mapping-go/otlp/metrics v0.83.0-devel.0.20260714134811-fee4bbf7ff73 // indirect
 	github.com/DataDog/datadog-agent/pkg/remoteconfig/state v0.81.0 // indirect
 	github.com/DataDog/datadog-agent/pkg/template v0.81.0 // indirect
 	github.com/DataDog/datadog-agent/pkg/trace/log v0.81.0 // indirect
@@ -173,3 +173,9 @@ replace github.com/open-telemetry/opentelemetry-collector-contrib/internal/k8sco
 replace github.com/open-telemetry/opentelemetry-collector-contrib/internal/common => ../../internal/common
 
 replace github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/ecsutil => ../../internal/aws/ecsutil
+
+// HACK for rate propagation
+replace github.com/DataDog/datadog-agent/pkg/opentelemetry-mapping-go/otlp/metrics v0.83.0-devel.0.20260714134811-fee4bbf7ff73 => github.com/discord/datadog-agent/pkg/opentelemetry-mapping-go/otlp/metrics v0.0.0-20260812224311-9bcc1eb775a8
+
+// HACK for slice attribute encoding (required by forked metrics package above)
+replace github.com/DataDog/datadog-agent/pkg/opentelemetry-mapping-go/otlp/attributes v0.83.0-devel.0.20260714134811-fee4bbf7ff73 => github.com/discord/datadog-agent/pkg/opentelemetry-mapping-go/otlp/attributes v0.0.0-20260812224311-9bcc1eb775a8

@@ -4,10 +4,6 @@ github.com/DataDog/datadog-agent/comp/core/tagger/origindetection v0.81.0 h1:pIB
 github.com/DataDog/datadog-agent/comp/core/tagger/origindetection v0.81.0/go.mod h1:JTXCHrV/ERkPhtL/fjxD6EUpwimWNc1NE0F2VkYHrKQ=
 github.com/DataDog/datadog-agent/pkg/obfuscate v0.81.0 h1:sG0LIZzOkmIndTi+MBPSNJGJrxYevL0JCp29KXqB3go=
 github.com/DataDog/datadog-agent/pkg/obfuscate v0.81.0/go.mod h1:wauJ14cAQu8cxwvdel8Qav0oZXJ6kVo0rv2NfwzT65I=
-github.com/DataDog/datadog-agent/pkg/opentelemetry-mapping-go/otlp/attributes v0.83.0-devel.0.20260714134811-fee4bbf7ff73 h1:bjCzif0GUn6bIHf1WGMNhtyrTRKLqv+aNdtlHjMHpJo=
-github.com/DataDog/datadog-agent/pkg/opentelemetry-mapping-go/otlp/attributes v0.83.0-devel.0.20260714134811-fee4bbf7ff73/go.mod h1:BTx/kraMr2voSf1gis9PrnvuX6Qvg68oKBcB+y/GaLo=
-github.com/DataDog/datadog-agent/pkg/opentelemetry-mapping-go/otlp/metrics v0.83.0-devel.0.20260714134811-fee4bbf7ff73 h1:39mNeiSRqQ6nGUmgtOP11RLetA7saj/ra/sfnzf3VZc=
-github.com/DataDog/datadog-agent/pkg/opentelemetry-mapping-go/otlp/metrics v0.83.0-devel.0.20260714134811-fee4bbf7ff73/go.mod h1:XckLrQ0Fd87K2IrIF6JyAyxU96azEk7cQukXqJd+alk=
 github.com/DataDog/datadog-agent/pkg/proto v0.81.0 h1:mYGLtQ2z13VJFxFC6HRMdGTnVXDtK/PUY5MAJTX1z3Y=
 github.com/DataDog/datadog-agent/pkg/proto v0.81.0/go.mod h1:6KiJkkYXi8EizP4kohrzyPWM/wd1yvrvq/ATmixXjL4=
 github.com/DataDog/datadog-agent/pkg/remoteconfig/state v0.81.0 h1:xlh2qg7xEwcztum8FiehkmIFgvcWjHkxph5lq1C0UEc=
@@ -61,6 +57,10 @@ github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc/go.mod h1:J7Y8Yc
 github.com/dgryski/go-farm v0.0.0-20190423205320-6a90982ecee2/go.mod h1:SqUrOPUnsFjfmXRMNPybcSiG0BgUW2AuFH8PAnS2iTw=
 github.com/dgryski/go-farm v0.0.0-20240924180020-3414d57e47da h1:aIftn67I1fkbMa512G+w+Pxci9hJPB8oMnkcP3iZF38=
 github.com/dgryski/go-farm v0.0.0-20240924180020-3414d57e47da/go.mod h1:SqUrOPUnsFjfmXRMNPybcSiG0BgUW2AuFH8PAnS2iTw=
+github.com/discord/datadog-agent/pkg/opentelemetry-mapping-go/otlp/attributes v0.0.0-20260812224311-9bcc1eb775a8 h1:UZsEvI7RaxVt4kJS/pZRKOzXAKpmSxZOZX2zOZf+6Vs=
+github.com/discord/datadog-agent/pkg/opentelemetry-mapping-go/otlp/attributes v0.0.0-20260812224311-9bcc1eb775a8/go.mod h1:BTx/kraMr2voSf1gis9PrnvuX6Qvg68oKBcB+y/GaLo=
+github.com/discord/datadog-agent/pkg/opentelemetry-mapping-go/otlp/metrics v0.0.0-20260812224311-9bcc1eb775a8 h1:ip4mgIAhaYlbFmDtSSS++84b77AH5Dv3aCyveZpZVe8=
+github.com/discord/datadog-agent/pkg/opentelemetry-mapping-go/otlp/metrics v0.0.0-20260812224311-9bcc1eb775a8/go.mod h1:XckLrQ0Fd87K2IrIF6JyAyxU96azEk7cQukXqJd+alk=
 github.com/dustin/go-humanize v1.0.0/go.mod h1:HtrtbFcZ19U5GC7JDqmcUSB87Iq5E25KnS6fMYU6eOk=
 github.com/dustin/go-humanize v1.0.1 h1:GzkhY7T5VNhEkwH0PVJgjz+fX1rhBrR7pRT3mDkpeCY=
 github.com/dustin/go-humanize v1.0.1/go.mod h1:Mu1zIs6XwVuF/gI1OepvI0qD18qycQx+mFykh5fBlto=

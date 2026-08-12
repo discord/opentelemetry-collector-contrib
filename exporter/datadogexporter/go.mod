@@ -339,6 +339,21 @@ replace github.com/open-telemetry/opentelemetry-collector-contrib/pkg/resourceto
 // see https://github.com/DataDog/agent-payload/issues/218
 exclude github.com/DataDog/agent-payload/v5 v5.0.59
 
+// HACK for slice attribute encoding
+replace github.com/DataDog/datadog-agent/pkg/opentelemetry-mapping-go/otlp/attributes v0.83.0-devel.0.20260714134811-fee4bbf7ff73 => github.com/discord/datadog-agent/pkg/opentelemetry-mapping-go/otlp/attributes v0.0.0-20260812224311-9bcc1eb775a8
+
+// HACK for slice attribute encoding
+replace github.com/DataDog/datadog-agent/pkg/opentelemetry-mapping-go/otlp/logs v0.83.0-devel.0.20260714134811-fee4bbf7ff73 => github.com/discord/datadog-agent/pkg/opentelemetry-mapping-go/otlp/logs v0.0.0-20260812224311-9bcc1eb775a8
+
+// HACK for rate propagation
+replace github.com/DataDog/datadog-agent/pkg/opentelemetry-mapping-go/otlp/metrics v0.83.0-devel.0.20260714134811-fee4bbf7ff73 => github.com/discord/datadog-agent/pkg/opentelemetry-mapping-go/otlp/metrics v0.0.0-20260812224311-9bcc1eb775a8
+
+// HACK for rate propagation
+replace github.com/DataDog/datadog-agent/comp/otelcol/otlp/components/exporter/serializerexporter v0.83.0-devel.0.20260723174943-dbdf7e37527d => github.com/discord/datadog-agent/comp/otelcol/otlp/components/exporter/serializerexporter v0.0.0-20260812224311-9bcc1eb775a8
+
+// HACK for ???
+replace github.com/DataDog/datadog-agent/pkg/serializer v0.82.0-devel.0.20260708210941-b0d9b5a19458 => github.com/discord/datadog-agent/pkg/serializer v0.0.0-20260812224311-9bcc1eb775a8
+
 retract (
 	v0.76.2
 	v0.76.1
